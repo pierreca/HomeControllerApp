@@ -22,5 +22,17 @@ namespace HomeController
         {
             DataContext = await HomeControllerApi.GetCurrentSong();
         }
+
+        private async void btnVolumeUp_Click(object sender, EventArgs e)
+        {
+            var currentVolume = await HomeControllerApi.GetVolume();
+            await HomeControllerApi.SetVolume(currentVolume + 5);
+        }
+
+        private async void btnVolumeDown_Click(object sender, EventArgs e)
+        {
+            var currentVolume = await HomeControllerApi.GetVolume();
+            await HomeControllerApi.SetVolume(currentVolume - 5);
+        }
     }
 }

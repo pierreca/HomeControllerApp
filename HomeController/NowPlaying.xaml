@@ -62,4 +62,10 @@
         </Grid>
     </Grid>
 
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False" Opacity=".5">
+            <shell:ApplicationBarIconButton x:Name="btnVolumeUp" IconUri="/Assets/Icons/add.png" Text="vol up" Click="btnVolumeUp_Click" />
+            <shell:ApplicationBarIconButton x:Name="btnVolumeDown" IconUri="/Assets/Icons/minus.png" Text="vol down" Click="btnVolumeDown_Click" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>
