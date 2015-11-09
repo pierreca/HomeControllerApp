@@ -18,7 +18,8 @@
 
     <phone:PhoneApplicationPage.Resources>
         <app:StateToColorConverter x:Key="StateToColorConverter" />
-        <app:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <app:BoolToVisibleConverter x:Key="BoolToVisibleConverter" />
+        <app:BoolToCollapsedConverter x:Key="BoolToCollapsedConverter" />
 
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity=".5" x:Key="LightsAppBar">
             <shell:ApplicationBarIconButton x:Name="btnRefreshSwitches" IconUri="/Assets/Icons/sync.png" Text="refresh" Click="btnRefreshSwitches_Click" />
@@ -90,11 +91,21 @@
                      x:Name="mainPivot"
                      SelectionChanged="Pivot_SelectionChanged">
             <phone:PivotItem Header="lights">
-                <ListBox x:Name="lbLightSwitches" 
-                         Margin="12,0"
-                         SelectionChanged="lbLightSwitches_SelectionChanged"
-                         ItemsSource="{Binding LightSwitches}"
-                         ItemTemplate="{StaticResource LightSwitchTemplate}" />
+                <Grid>
+                    <TextBlock Text="{Binding LightApiFailureMessage}"
+                               Visibility="{Binding LightApiFailure, Converter={StaticResource BoolToVisibleConverter}}"
+                               Foreground="Red"
+                               FontSize="24"
+                               Margin="24,0"
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Stretch" />
+                    <ListBox x:Name="lbLightSwitches" 
+                             Margin="12,0"
+                             SelectionChanged="lbLightSwitches_SelectionChanged"
+                             ItemsSource="{Binding LightSwitches}"
+                             ItemTemplate="{StaticResource LightSwitchTemplate}"
+                             Visibility="{Binding LightApiFailure, Converter={StaticResource BoolToCollapsedConverter}}"/>
+                </Grid>
             </phone:PivotItem>
             <phone:PivotItem Header="music">
                 <ListBox x:Name="lbPandoraStations"
@@ -105,7 +116,7 @@
             </phone:PivotItem>
             <phone:PivotItem Header="scenarios">
                 <StackPanel>
-                    <TextBlock Text="edit:" Style="{StaticResource PhoneTextLargeStyle}" Foreground="red" Visibility="{Binding ScenarioEditMode, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <TextBlock Text="edit:" Style="{StaticResource PhoneTextLargeStyle}" Foreground="red" Visibility="{Binding ScenarioEditMode, Converter={StaticResource BoolToVisibleConverter}}"/>
                     <ListBox x:Name="lbScenarios"
                              Margin="12,0"
                              SelectionChanged="lbScenarios_SelectionChanged"

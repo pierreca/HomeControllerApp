@@ -29,7 +29,7 @@ namespace HomeController.Core
                 }
                 else
                 {
-                    tcs.TrySetException(new Exception("Could not retrieve the list of pandora stations"));
+                    tcs.TrySetException(new HomeControllerApiException("Could not retrieve the list of pandora stations"));
                 }
             };
             wc.DownloadStringAsync(new Uri(BaseUrl + "music/pandora/stations/pierreca@live.com", UriKind.Absolute));
@@ -57,7 +57,7 @@ namespace HomeController.Core
                 }
                 else
                 {
-                    tcs.TrySetException(new Exception("Could not play the station"));
+                    tcs.TrySetException(new HomeControllerApiException("Could not play the station"));
                 }
             };
             wc.DownloadStringAsync(new Uri(BaseUrl + "music/pandora/play/" + station.Id, UriKind.Absolute));
@@ -86,12 +86,12 @@ namespace HomeController.Core
                     }
                     catch (Exception ex)
                     {
-                        tcs.TrySetException(new Exception("Could not parse JSON response"));
+                        tcs.TrySetException(new HomeControllerApiException("Could not parse JSON response"));
                     }
                 }
                 else
                 {
-                    tcs.TrySetException(new Exception("Could not get current song"));
+                    tcs.TrySetException(new HomeControllerApiException("Could not get current song"));
                 }
             };
             wc.DownloadStringAsync(new Uri(BaseUrl + "music/nowplaying?nocache=" + Environment.TickCount.ToString(), UriKind.Absolute));
@@ -144,12 +144,12 @@ namespace HomeController.Core
                     }
                     catch(Exception)
                     {
-                        tcs.TrySetException(new Exception("Could not parse volume"));
+                        tcs.TrySetException(new HomeControllerApiException("Could not parse volume"));
                     }
                 }
                 else
                 {
-                    tcs.TrySetException(new Exception("Could not get volume"));
+                    tcs.TrySetException(new HomeControllerApiException("Could not get volume"));
                 }
             };
             wc.DownloadStringAsync(new Uri(BaseUrl + "music/volume?nocache=" + Environment.TickCount.ToString(), UriKind.Absolute));

@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace HomeController
 {
-    public class BoolToVisibilityConverter : IValueConverter
+    public class BoolToVisibleConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {

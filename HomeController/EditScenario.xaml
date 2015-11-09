@@ -17,7 +17,7 @@
     Loaded="PhoneApplicationPage_Loaded">
     
     <phone:PhoneApplicationPage.Resources>
-        <app:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <app:BoolToVisibleConverter x:Key="BoolToVisibilityConverter" />
         
         <DataTemplate x:Key="RadioItemTemplate">
             <TextBlock Text="{Binding Name}" />

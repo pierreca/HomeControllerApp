@@ -11,7 +11,7 @@ namespace HomeController
 {
     public class SettingsHelper
     {
-        private const string DefaultServerIP = "192.168.1.111";
+        private const string DefaultServerIP = "192.168.1.21";
         private const string DefaultPandoraUser = "pierreca@live.com";
 
         public static string ServerIP

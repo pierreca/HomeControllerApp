@@ -10,7 +10,7 @@ namespace HomeController.Core
 {
     public partial class HomeControllerApi
     {
-        private const string BaseUrl = "http://192.168.1.111:5000/";
+        private static string BaseUrl = "http://" + SettingsHelper.ServerIP + ":5000/";
 
         public static Task<IEnumerable<LightSwitch>> GetSwitches()
         {
@@ -31,10 +31,10 @@ namespace HomeController.Core
                 }
                 else
                 {
-                    tcs.TrySetException(new Exception("Could not retrieve the list of switches"));
+                    tcs.TrySetException(new HomeControllerApiException("Could not retrieve the list of switches"));
                 }
             };
-            wc.DownloadStringAsync(new Uri("http://192.168.1.111:5000/wemo/list?nocache=" + Environment.TickCount.ToString(), UriKind.Absolute));
+            wc.DownloadStringAsync(new Uri(BaseUrl + "wemo/list?nocache=" + Environment.TickCount.ToString(), UriKind.Absolute));
             
             return tcs.Task;
         }

@@ -95,9 +95,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\BoolToCollapsedConverter.cs" />
+    <Compile Include="Converters\BoolToVisibleConverter.cs" />
     <Compile Include="Core\HomeControllerApi.Lights.cs" />
     <Compile Include="Core\HomeControllerApi.Music.cs" />
+    <Compile Include="Core\HomeControllerApiException.cs" />
     <Compile Include="Core\ScenarioPlayer.cs" />
     <Compile Include="EditScenario.xaml.cs">
       <DependentUpon>EditScenario.xaml</DependentUpon>
